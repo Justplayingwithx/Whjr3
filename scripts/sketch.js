@@ -297,7 +297,7 @@ if(haha===false){
    textSize(20)
    coinGroup.destroyEach();
    coinSprite.destroy();
-  text("Game Over! Your final score was: "+score+". Press space to try again, or L to submit your score to the leaderboard.",width/2-300,height/2)
+  text("Game Over! Your final score was: "+score+". Press space to try again, or L to submit your score to the leaderboard.",10,height/2)
   
   if(keyDown("space")){
     state = "play";
