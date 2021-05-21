@@ -33,6 +33,7 @@ var coinGroup;
 var bufferScore;
 var coinIndex; 
 var coinNumber;
+var destroyGroup;
 
 
 var state;
@@ -70,6 +71,8 @@ startBuffer = false;
  bufferScore = 0;
 
  coinIndex = []
+
+ destroyGroup = new Group();
 
 
 
@@ -199,6 +202,7 @@ if(state === "play"){
             coinSprite = createSprite(mine.x-100,mine.y,20,20)
             coinSprite.addImage(coinImage);
             coinSprite.velocityY = -3;
+            destroyGroup.add(coinSprite);
             haha = true;
             
             break;
@@ -236,6 +240,7 @@ if(state === "play"){
            coinSprite.addImage(coinImage);
            coinSprite.velocityY = -3;
            coinSprite.lifetime = 900/3;
+           destroyGroup.add(coinSprite)
            haha = true;
            break;
          case 3:
@@ -296,8 +301,10 @@ if(haha===false){
  }else if(state === "end"){
    textSize(20)
    coinGroup.destroyEach();
-   coinSprite.destroy();
-  text("Game Over! Your final score was: "+score+". Press space to try again, or L to submit your score to the leaderboard.",10,height/2)
+   destroyGroup.destroyEach();
+   
+  text("Game Over! Your final score was: "+score+". Press space to try again, or ",width/2-300,height/2)
+  text(" L to submit your score to the leaderboard.",width/2-200,height/2+50)
   
   if(keyDown("space")){
     state = "play";
@@ -307,6 +314,9 @@ if(haha===false){
    
    player.x = width-width/2;
     setup();
+  }
+  if(keyDown("L")||keyDown("l")){
+    
   }
  
 }
